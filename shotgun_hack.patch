@@ -1,0 +1,76 @@
+diff --git a/code/game/.vscode/ipch/1fbc74c001bb589a/ai_cmd.ipch b/code/game/.vscode/ipch/1fbc74c001bb589a/ai_cmd.ipch
+new file mode 100644
+index 00000000..1267b128
+Binary files /dev/null and b/code/game/.vscode/ipch/1fbc74c001bb589a/ai_cmd.ipch differ
+diff --git a/code/game/.vscode/ipch/1fbc74c001bb589a/mmap_address.bin b/code/game/.vscode/ipch/1fbc74c001bb589a/mmap_address.bin
+new file mode 100644
+index 00000000..d51655f3
+Binary files /dev/null and b/code/game/.vscode/ipch/1fbc74c001bb589a/mmap_address.bin differ
+diff --git a/code/game/.vscode/ipch/3208250a1e5b8f1/g_weapon.ipch b/code/game/.vscode/ipch/3208250a1e5b8f1/g_weapon.ipch
+new file mode 100644
+index 00000000..adb1d0c7
+Binary files /dev/null and b/code/game/.vscode/ipch/3208250a1e5b8f1/g_weapon.ipch differ
+diff --git a/code/game/.vscode/ipch/3208250a1e5b8f1/mmap_address.bin b/code/game/.vscode/ipch/3208250a1e5b8f1/mmap_address.bin
+new file mode 100644
+index 00000000..4d7730b8
+Binary files /dev/null and b/code/game/.vscode/ipch/3208250a1e5b8f1/mmap_address.bin differ
+diff --git a/code/game/.vscode/ipch/5f6fe349073e1f08/g_bot.ipch b/code/game/.vscode/ipch/5f6fe349073e1f08/g_bot.ipch
+new file mode 100644
+index 00000000..3d18baf5
+Binary files /dev/null and b/code/game/.vscode/ipch/5f6fe349073e1f08/g_bot.ipch differ
+diff --git a/code/game/.vscode/ipch/5f6fe349073e1f08/mmap_address.bin b/code/game/.vscode/ipch/5f6fe349073e1f08/mmap_address.bin
+new file mode 100644
+index 00000000..0546aaa5
+Binary files /dev/null and b/code/game/.vscode/ipch/5f6fe349073e1f08/mmap_address.bin differ
+diff --git a/code/game/.vscode/ipch/a78a87821f753a56/ai_chat.ipch b/code/game/.vscode/ipch/a78a87821f753a56/ai_chat.ipch
+new file mode 100644
+index 00000000..d65dd683
+Binary files /dev/null and b/code/game/.vscode/ipch/a78a87821f753a56/ai_chat.ipch differ
+diff --git a/code/game/.vscode/ipch/a78a87821f753a56/mmap_address.bin b/code/game/.vscode/ipch/a78a87821f753a56/mmap_address.bin
+new file mode 100644
+index 00000000..25a3d414
+Binary files /dev/null and b/code/game/.vscode/ipch/a78a87821f753a56/mmap_address.bin differ
+diff --git a/code/game/.vscode/ipch/a889f6e7e7dca8cd/ai_main.ipch b/code/game/.vscode/ipch/a889f6e7e7dca8cd/ai_main.ipch
+new file mode 100644
+index 00000000..f6096a48
+Binary files /dev/null and b/code/game/.vscode/ipch/a889f6e7e7dca8cd/ai_main.ipch differ
+diff --git a/code/game/.vscode/ipch/a889f6e7e7dca8cd/mmap_address.bin b/code/game/.vscode/ipch/a889f6e7e7dca8cd/mmap_address.bin
+new file mode 100644
+index 00000000..f301ef94
+Binary files /dev/null and b/code/game/.vscode/ipch/a889f6e7e7dca8cd/mmap_address.bin differ
+diff --git a/code/game/.vscode/ipch/d820f9bb1483811a/bg_pmove.ipch b/code/game/.vscode/ipch/d820f9bb1483811a/bg_pmove.ipch
+new file mode 100644
+index 00000000..072f2519
+Binary files /dev/null and b/code/game/.vscode/ipch/d820f9bb1483811a/bg_pmove.ipch differ
+diff --git a/code/game/.vscode/ipch/d820f9bb1483811a/mmap_address.bin b/code/game/.vscode/ipch/d820f9bb1483811a/mmap_address.bin
+new file mode 100644
+index 00000000..97e48484
+Binary files /dev/null and b/code/game/.vscode/ipch/d820f9bb1483811a/mmap_address.bin differ
+diff --git a/code/game/bg_public.h b/code/game/bg_public.h
+index fa898c44..b4e7d575 100644
+--- a/code/game/bg_public.h
++++ b/code/game/bg_public.h
+@@ -35,8 +35,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ 
+ #define	RANK_TIED_FLAG		0x4000
+ 
+-#define DEFAULT_SHOTGUN_SPREAD	700
+-#define DEFAULT_SHOTGUN_COUNT	11
++#define DEFAULT_SHOTGUN_SPREAD  1900	
++#define DEFAULT_SHOTGUN_COUNT   500	
+ 
+ #define	ITEM_RADIUS			15		// item sizes are needed for client side pickup detection
+ 
+diff --git a/code/game/g_weapon.c b/code/game/g_weapon.c
+index 752cb1e2..5865159d 100644
+--- a/code/game/g_weapon.c
++++ b/code/game/g_weapon.c
+@@ -265,7 +265,7 @@ SHOTGUN
+ 
+ // DEFAULT_SHOTGUN_SPREAD and DEFAULT_SHOTGUN_COUNT	are in bg_public.h, because
+ // client predicts same spreads
+-#define	DEFAULT_SHOTGUN_DAMAGE	10
++#define	DEFAULT_SHOTGUN_DAMAGE 300	
+ 
+ qboolean ShotgunPellet( vec3_t start, vec3_t end, gentity_t *ent ) {
+ 	trace_t		tr;

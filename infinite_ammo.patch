@@ -1,0 +1,15 @@
+diff --git a/code/game/bg_pmove.c b/code/game/bg_pmove.c
+index 5465c579..5fc21e51 100644
+--- a/code/game/bg_pmove.c
++++ b/code/game/bg_pmove.c
+@@ -1634,10 +1634,6 @@ static void PM_Weapon( void ) {
+ 		return;
+ 	}
+ 
+-	// take an ammo away if not infinite
+-	if ( pm->ps->ammo[ pm->ps->weapon ] != -1 ) {
+-		pm->ps->ammo[ pm->ps->weapon ]--;
+-	}
+ 
+ 	// fire weapon
+ 	PM_AddEvent( EV_FIRE_WEAPON );
