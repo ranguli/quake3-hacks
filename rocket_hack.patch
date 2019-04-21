@@ -1,0 +1,26 @@
+diff --git a/code/game/g_missile.c b/code/game/g_missile.c
+index 3a138b95..4a75dede 100644
+--- a/code/game/g_missile.c
++++ b/code/game/g_missile.c
+@@ -656,9 +656,9 @@ gentity_t *fire_rocket (gentity_t *self, vec3_t start, vec3_t dir) {
+ 	bolt->s.weapon = WP_ROCKET_LAUNCHER;
+ 	bolt->r.ownerNum = self->s.number;
+ 	bolt->parent = self;
+-	bolt->damage = 100;
+-	bolt->splashDamage = 100;
+-	bolt->splashRadius = 120;
++	bolt->damage = 300;
++	bolt->splashDamage = 300;
++	bolt->splashRadius = 300;
+ 	bolt->methodOfDeath = MOD_ROCKET;
+ 	bolt->splashMethodOfDeath = MOD_ROCKET_SPLASH;
+ 	bolt->clipmask = MASK_SHOT;
+@@ -667,7 +667,7 @@ gentity_t *fire_rocket (gentity_t *self, vec3_t start, vec3_t dir) {
+ 	bolt->s.pos.trType = TR_LINEAR;
+ 	bolt->s.pos.trTime = level.time - MISSILE_PRESTEP_TIME;		// move a bit on the very first frame
+ 	VectorCopy( start, bolt->s.pos.trBase );
+-	VectorScale( dir, 900, bolt->s.pos.trDelta );
++	VectorScale( dir, 7000, bolt->s.pos.trDelta );
+ 	SnapVector( bolt->s.pos.trDelta );			// save net bandwidth
+ 	VectorCopy (start, bolt->r.currentOrigin);
+ 

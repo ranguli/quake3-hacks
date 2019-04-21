@@ -1,0 +1,13 @@
+diff --git a/code/game/g_active.c b/code/game/g_active.c
+index a506a1e0..0bbe72d1 100644
+--- a/code/game/g_active.c
++++ b/code/game/g_active.c
+@@ -848,7 +848,7 @@ void ClientThink_real( gentity_t *ent ) {
+ 	}
+ 	else
+ #endif
+-	if ( client->ps.powerups[PW_HASTE] ) {
++	if ( qtrue ) {
+ 		client->ps.speed *= 1.3;
+ 	}
+ 

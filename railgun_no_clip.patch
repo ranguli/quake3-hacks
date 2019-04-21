@@ -1,0 +1,52 @@
+diff --git a/code/game/g_weapon.c b/code/game/g_weapon.c
+index 752cb1e2..88e7a372 100644
+--- a/code/game/g_weapon.c
++++ b/code/game/g_weapon.c
+@@ -448,19 +448,36 @@ void weapon_railgun_fire (gentity_t *ent) {
+ 	int			unlinked;
+ 	int			passent;
+ 	gentity_t	*unlinkedEntities[MAX_RAIL_HITS];
++	vec3_t 		tracefrom;
+ 
+ 	damage = 100 * s_quadFactor;
+ 
++	// This creates an end vector that is 8192 units beyond the 'muzzle'
+ 	VectorMA (muzzle, 8192, forward, end);
++	// Copy this vector over to our tracefrom vector
++	VectorCopy (muzzle, tracefrom);
+ 
+ 	// trace only against the solids, so the railgun will go through people
+ 	unlinked = 0;
+ 	hits = 0;
+ 	passent = ent->s.number;
++
++	// trace the railgun blast until we hit something, if we hit a wall
++	// exit the loop and try again.
+ 	do {
+-		trap_Trace (&trace, muzzle, NULL, NULL, end, passent, MASK_SHOT );
++		// trace a line from our traceform vector outwards
++		trap_Trace (&trace, tracefrom, NULL, NULL, end, ent->s.number, MASK_SHOT );
++		// detects if our trace hits a wall, the sky, etc
+ 		if ( trace.entityNum >= ENTITYNUM_MAX_NORMAL ) {
+-			break;
++			// if the surface flag of our trace is sky
++			if (trace.surfaceFlags & SURF_SKY)
++				break;
++			// if we hit the full length of the vector
++			if (trace.fraction == 1.0)
++				break;
++			// continue on tracing through walls
++			VectorMA (trace.endpos, 1, forward, tracefrom);
++			continue;
+ 		}
+ 		traceEnt = &g_entities[ trace.entityNum ];
+ 		if ( traceEnt->takedamage ) {
+@@ -535,6 +552,8 @@ void weapon_railgun_fire (gentity_t *ent) {
+ 		tent->s.eventParm = DirToByte( trace.plane.normal );
+ 	}
+ 	tent->s.clientNum = ent->s.clientNum;
++	// send the effects to everyone since it tunnels through walls
++	tent->r.svFlags |= SVF_BROADCAST;
+ 
+ 	// give the shooter a reward sound if they have made two railgun hits in a row
+ 	if ( hits == 0 ) {
