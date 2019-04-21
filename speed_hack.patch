@@ -11,16 +11,3 @@ index 4398113e..f42ab360 100644
  	{ &g_gravity, "g_gravity", "800", 0, 0, qtrue  },
  	{ &g_knockback, "g_knockback", "1000", 0, 0, qtrue  },
  	{ &g_quadfactor, "g_quadfactor", "3", 0, 0, qtrue  },
-diff --git a/code/game/g_weapon.c b/code/game/g_weapon.c
-index 752cb1e2..2894e4a5 100644
---- a/code/game/g_weapon.c
-+++ b/code/game/g_weapon.c
-@@ -158,7 +158,7 @@ void SnapVectorTowards( vec3_t v, vec3_t to ) {
- #define CHAINGUN_DAMAGE		7
- #endif
- #define MACHINEGUN_SPREAD	200
--#define	MACHINEGUN_DAMAGE	7
-+#define	MACHINEGUN_DAMAGE	300	
- #define	MACHINEGUN_TEAM_DAMAGE	5		// wimpier MG in teamplay
- 
- void Bullet_Fire (gentity_t *ent, float spread, int damage, int mod ) {
